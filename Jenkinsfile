@@ -25,22 +25,23 @@ pipeline {
             }
         }
         stage('Quality Code') {
-            steps {
-                sh "/opt/sonar-scanner/bin/sonar-scanner \
-                -Dsonar.projectKey=Frontend \
-                -Dsonar.sourceEncoding=UTF-8 \
-                -Dsonar.sources=src/app \
-                -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/app.child.imports.ts \
-                -Dsonar.tests=src \
-                -Dsonar.test.inclusions=**/*.spec.ts \
-                -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"
+            environment {
+                scannerHome = tool 'SonarQubeScanner'
             }
-        }
-        stage('Quality Gate'){
             steps {
-                timeout(time: 2, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: false
+                withSonarQubeEnv('SonarServer') {
+                    sh "${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=Frontend \
+                    -Dsonar.sourceEncoding=UTF-8 \
+                    -Dsonar.sources=src/app \
+                    -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/app.child.imports.ts \
+                    -Dsonar.tests=src \
+                    -Dsonar.test.inclusions=**/*.spec.ts \
+                    -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"
                 }
+                // timeout(time: 10, unit: 'MINUTES') {
+                //     waitForQualityGate abortPipeline: true
+                // }
             }
         }
         stage('Database Changes') {

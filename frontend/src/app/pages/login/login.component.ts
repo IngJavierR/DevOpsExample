@@ -39,6 +39,11 @@ export class LoginComponent implements OnInit {
       password: this.formLogin.controls.password.value,
     } as ILoginReq;
 
+    let arr = ["a", "b", "c"];
+    let merged = arr.reduce((a, b) =>
+      a.concat(b)
+    );
+
     this.securityService.login(data).subscribe(res => {
       this.dataService.setToken(res.token);
       this.router.navigate(['home']);

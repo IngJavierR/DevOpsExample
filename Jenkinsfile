@@ -29,19 +29,21 @@ pipeline {
                 scannerHome = tool 'SonarQubeScanner'
             }
             steps {
-                withSonarQubeEnv('SonarServer') {
-                    sh "${scannerHome}/bin/sonar-scanner \
-                    -Dsonar.projectKey=Frontend \
-                    -Dsonar.sourceEncoding=UTF-8 \
-                    -Dsonar.sources=src/app \
-                    -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/app.child.imports.ts \
-                    -Dsonar.tests=src \
-                    -Dsonar.test.inclusions=**/*.spec.ts \
-                    -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"
+                dir('frontend/'){
+                    withSonarQubeEnv('SonarServer') {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectKey=Frontend \
+                        -Dsonar.sourceEncoding=UTF-8 \
+                        -Dsonar.sources=src/app \
+                        -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.module.ts,**/app.child.imports.ts \
+                        -Dsonar.tests=src \
+                        -Dsonar.test.inclusions=**/*.spec.ts \
+                        -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"
+                    }
+                    // timeout(time: 10, unit: 'MINUTES') {
+                    //     waitForQualityGate abortPipeline: true
+                    // }
                 }
-                // timeout(time: 10, unit: 'MINUTES') {
-                //     waitForQualityGate abortPipeline: true
-                // }
             }
         }
         stage('Database Changes') {

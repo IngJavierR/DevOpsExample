@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-display: swap;
+}
+
+/* Bootstrap 4 Fix for Angular Material */
+[mat],
+::after,
+::before {
+  box-sizing: unset;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mt {
+  margin-top: 24px;
+}

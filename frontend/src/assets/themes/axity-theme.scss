@@ -1,0 +1,106 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+$primary-axity: (
+    50 : #e9e2ed,
+    100 : #c8b7d1,
+    200 : #a487b3,
+    300 : #7f5695,
+    400 : #63327e,
+    500 : #480e67,
+    600 : #410c5f,
+    700 : #380a54,
+    800 : #30084a,
+    900 : #210439,
+    A100 : #b56fff,
+    A200 : #9b3cff,
+    A400 : #8109ff,
+    A700 : #7500ef,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$axity-accent: (
+    50 : #fee7e9,
+    100 : #fdc2c8,
+    200 : #fc9aa4,
+    300 : #fb7280,
+    400 : #fa5364,
+    500 : #f93549,
+    600 : #f83042,
+    700 : #f72839,
+    800 : #f62231,
+    900 : #f51621,
+    A100 : #ffffff,
+    A200 : #fff1f2,
+    A400 : #ffbec1,
+    A700 : #ffa5a8,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$default-primary: mat-palette($primary-axity);
+$default-accent: mat-palette($axity-accent);
+
+// The warn palette is optional (defaults to red).
+$default-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$axity-theme: mat-light-theme($default-primary, $default-accent, $default-warn);
+
+.axity-theme {
+  @mixin custom-elements($axity-theme) {
+    // Extract the palettes you need from the theme definition.
+    $primary: map-get($axity-theme, primary);
+    $accent: map-get($axity-theme, accent);
+
+    .logo {
+      background-image: url('../img/axity-purple.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  @include angular-material-theme($axity-theme);
+  @include custom-elements($axity-theme);
+}

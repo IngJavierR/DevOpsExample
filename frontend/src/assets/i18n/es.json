@@ -1,0 +1,38 @@
+{
+  "language": {
+    "es": "Español",
+    "en": "Inglés"
+  },
+  "theme": {
+    "default": "Por Defecto",
+    "dark": "Oscuro",
+    "axity": "Axity"
+  },
+  "login": {
+    "username": {
+      "title": "Usuario",
+      "errors": {
+        "required": "Usuario requerido"
+      }
+    },
+    "password": {
+      "title": "Contraseña",
+      "errors": {
+        "required": "Contraseña requerida"
+      }
+    },
+    "login-button": "Ingresar"
+  },
+  "home": {
+    "title": "Inicio"
+  },
+  "colors": {
+    "title": "Colores",
+    "columns": {
+      "name": "Nombre",
+      "year": "Año",
+      "color": "Color",
+      "pantone": "Pantone"
+    }
+  }
+}

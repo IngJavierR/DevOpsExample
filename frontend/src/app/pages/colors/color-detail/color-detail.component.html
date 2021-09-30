@@ -1,0 +1,17 @@
+<div class="container mt">
+  <div class="row" *ngIf="color">
+    <div class="col-md-8">
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <div mat-line>ID: {{color.id}}</div>
+          <div mat-line>{{'colors.columns.name' | translate}}: {{color.name}}</div>
+          <div mat-line>{{'colors.columns.year' | translate}}: {{color.year}}</div>
+          <div mat-line>{{'colors.columns.color' | translate}}: {{color.color}}</div>
+          <div mat-line>{{'colors.columns.pantone' | translate}}: {{color.pantone_value}}</div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="col-md-4 color-sample" [ngStyle]="{'background-color': color.color}">
+    </div>
+  </div>
+</div>

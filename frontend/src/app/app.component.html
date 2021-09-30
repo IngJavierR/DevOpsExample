@@ -1,0 +1,45 @@
+<div class="main-container">
+  <mat-progress-bar class="loading-bar" color="accent" *ngIf="isLoading | async" mode="indeterminate"></mat-progress-bar>
+  <mat-toolbar class="header" color="primary">
+    <mat-toolbar-row>
+      <span>frontend</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  <mat-toolbar class="footer">
+    <mat-toolbar-row>
+      <span>© {{ now | date: 'yyyy' }} axity</span>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menuTheme">
+          <mat-icon>palette</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menuLang">
+          <mat-icon>translate</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+    <mat-menu #menuLang>
+      <button mat-menu-item (click)="changeLanguage('es')">
+        <mat-icon svgIcon="mex"></mat-icon>
+        <span>{{'language.es' | translate}}</span>
+      </button>
+      <button mat-menu-item (click)="changeLanguage('en')">
+        <mat-icon svgIcon="usa"></mat-icon>
+        <span>{{'language.en' | translate}}</span>
+      </button>
+    </mat-menu>
+    <mat-menu #menuTheme>
+      <button mat-menu-item (click)="changeTheme('default-theme')">
+        <span>{{'theme.default' | translate}}</span>
+      </button>
+      <button mat-menu-item (click)="changeTheme('dark-theme')">
+        <span>{{'theme.dark' | translate}}</span>
+      </button>
+      <button mat-menu-item (click)="changeTheme('axity-theme')">
+        <span>{{'theme.axity' | translate}}</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</div>

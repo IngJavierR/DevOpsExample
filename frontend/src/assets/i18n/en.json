@@ -1,0 +1,38 @@
+{
+  "language": {
+    "es": "Spanish",
+    "en": "English"
+  },
+  "theme": {
+    "default": "Default",
+    "dark": "Dark",
+    "axity": "Axity"
+  },
+  "login": {
+    "username": {
+      "title": "Username",
+      "errors": {
+        "required": "Username required"
+      }
+    },
+    "password": {
+      "title": "Password",
+      "errors": {
+        "required": "Password required"
+      }
+    },
+    "login-button": "Login"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "colors": {
+    "title": "Colors",
+    "columns": {
+      "name": "Name",
+      "year": "Year",
+      "color": "Color",
+      "pantone": "Pantone"
+    }
+  }
+}

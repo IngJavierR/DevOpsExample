@@ -40,9 +40,9 @@ pipeline {
                         -Dsonar.test.inclusions=**/*.spec.ts \
                         -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info"
                     }
-                    // timeout(time: 10, unit: 'MINUTES') {
-                    //     waitForQualityGate abortPipeline: true
-                    // }
+                    timeout(time: 2, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: true
+                    }
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
                 echo 'Deploy'
             }
         }
-        /*stage('Testing') {
+        stage('Testing') {
             steps {
 				dir('cypress/') {
 					sh 'docker run --rm --name Cypress -v /Users/javierrodriguez/Documents/Repositorios/EcosistemaJenkins/jenkins_home/workspace/Microservicio/DevOpsExample:/e2e -w /e2e -e Cypress cypress/included:3.4.0'
@@ -73,6 +73,6 @@ pipeline {
                     allowEmptyArchive: true
                 }
             }
-        }*/
+        }
     }
 }
